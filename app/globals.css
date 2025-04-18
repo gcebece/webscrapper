@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --primary-light: #818cf8;
+  --secondary: #10b981;
+  --background: #f9fafb;
+  --card-bg: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+}
+
+body {
+  color: var(--text-primary);
+  background: var(--background);
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-5 rounded-lg shadow-sm transition-all duration-200 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50;
+  }
+  
+  .input-field {
+    @apply w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white text-gray-900;
+  }
+
+  .card {
+    @apply bg-white p-6 rounded-xl shadow-md border border-gray-100;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-gray-800 mb-4;
+  }
+
+  .info-label {
+    @apply text-lg font-semibold text-gray-700;
+  }
+
+  .info-value {
+    @apply text-gray-600 break-words;
+  }
+} 
