@@ -1,2 +1,6 @@
 # This file intentionally left empty
 # No submodules are used in this project 
+
+[submodule "web-scraper"]
+	path = web-scraper
+	url = https://github.com/gcebece/webscrapper.git 
