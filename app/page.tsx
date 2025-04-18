@@ -4,6 +4,51 @@ import { useState } from 'react'
 import ScrapeForm from './components/ScrapeForm'
 import ResultDisplay from './components/ResultDisplay'
 
+// Sample data for static export (GitHub Pages)
+const sampleData = {
+  websiteTitle: "Sample Business Website",
+  businessType: "Technology Company",
+  email: "contact@example.com",
+  phone: "+1 (555) 123-4567",
+  address: "123 Tech Lane, San Francisco, CA 94107",
+  socialMedia: ["https://facebook.com/samplecompany", "https://twitter.com/samplecompany"],
+  description: "This is a sample business description for the static export demonstration. In the live version, real website data will be shown here.",
+  seoInfo: {
+    title: "Sample SEO Title",
+    metaDescription: "This is a sample meta description for demonstration purposes.",
+    metaKeywords: "sample, demo, webscraper",
+    ogTags: {
+      title: "Sample OG Title",
+      description: "Sample OG Description"
+    },
+    twitterTags: {
+      title: "Sample Twitter Title",
+      description: "Sample Twitter Description"
+    },
+    canonicalUrl: "https://example.com",
+    headings: {
+      h1: 2,
+      h2: 5,
+      h3: 8
+    },
+    imgAltTags: 10,
+    imgMissingAlt: 2
+  },
+  technologies: ["React", "Next.js", "TailwindCSS", "API Integration"],
+  pageStructure: {
+    hasHeader: true,
+    hasFooter: true,
+    hasNavigation: true,
+    hasSlider: false,
+    hasSidebar: true,
+    hasCookieBanner: true,
+    totalLinks: 45,
+    internalLinks: 32,
+    externalLinks: 13,
+    totalImages: 12
+  }
+};
+
 export default function Home() {
   const [results, setResults] = useState<any>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -14,6 +59,17 @@ export default function Home() {
     setError(null)
     
     try {
+      // Check if we're in the static GitHub Pages environment
+      if (window.location.hostname === 'gcebece.github.io') {
+        // For GitHub Pages static export, use sample data
+        setTimeout(() => {
+          setResults(sampleData);
+          setLoading(false);
+        }, 1500); // Simulate loading
+        return;
+      }
+
+      // For local development or production deployment with API
       const response = await fetch('/api/scrape', {
         method: 'POST',
         headers: {
@@ -45,6 +101,11 @@ export default function Home() {
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Extract valuable business information from any website with our advanced AI-powered tool
         </p>
+        {window?.location?.hostname === 'gcebece.github.io' && (
+          <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-700 text-sm inline-block">
+            <strong>Note:</strong> This is a static demo on GitHub Pages. Enter any URL to see sample results.
+          </div>
+        )}
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
