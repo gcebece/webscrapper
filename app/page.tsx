@@ -59,16 +59,6 @@ export default function Home() {
     setError(null)
     
     try {
-      // Check if we're in the static GitHub Pages environment
-      if (window.location.hostname === 'gcebece.github.io') {
-        // For GitHub Pages static export, use sample data
-        setTimeout(() => {
-          setResults(sampleData);
-          setLoading(false);
-        }, 1500); // Simulate loading
-        return;
-      }
-
       // For local development or production deployment with API
       const response = await fetch('/api/scrape', {
         method: 'POST',
@@ -101,11 +91,6 @@ export default function Home() {
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Extract valuable business information from any website with our advanced AI-powered tool
         </p>
-        {window?.location?.hostname === 'gcebece.github.io' && (
-          <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-700 text-sm inline-block">
-            <strong>Note:</strong> This is a static demo on GitHub Pages. Enter any URL to see sample results.
-          </div>
-        )}
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
